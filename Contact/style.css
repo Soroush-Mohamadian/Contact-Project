@@ -6,6 +6,6 @@ body,html{
 #form{
     width: 0px;
     visibility: hidden;
-    transition: all 1s;
+    transition: all .5s;
 
 }
