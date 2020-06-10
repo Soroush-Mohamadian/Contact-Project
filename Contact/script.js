@@ -72,7 +72,32 @@ function renderTable() {
     renderTable();
     hideForm();
     event.target.reset();
-
+});
   
+// delete item
+function deleteContact(id) {
+    let contacts = JSON.parse(localStorage.getItem('contacts'));
+    contacts = contacts.filter(item => item.id != id);
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+    $('tbody').html('');
+    renderTable();
+  }
+
+  function deletItem(id) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      if (result.value) {
+        deleteContact(id);
+        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+      }
+    });
+  }
 
 
