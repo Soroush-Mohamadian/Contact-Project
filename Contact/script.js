@@ -5,9 +5,10 @@ function toggleForm() {
 }
 
 function showForm() {
-    $('#form').css('width', '20%')
+    $('#form').css('width', '350px')
     $('#form').css('visibility', 'visible')
     $('#form').css('padding', '1.5rem')
+    $('#toggle_btn').text('Cancel')
 
 }
 
@@ -15,6 +16,7 @@ function hideForm() {
     $('#form').css('width', '0px')
     $('#form').css('visibility', 'hidden')
     $('#form').css('padding', '0px')
+    $('#toggle_btn').text('Add New Contact')
 }
 
 $('#form').on('submit', function (event) {
@@ -100,4 +102,17 @@ function deleteContact(id) {
     });
   }
 
+  function edit(id) {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    const editContact = contacts.find(item => item.id == id);
+    $('#id_id_number').val(editContact.id);
+    $('#id_name').val(editContact.name);
+    $('#id_last_name').val(editContact.surname);
+    $('#id_Phone_number').val(editContact.phoneNumber);
+    $('#id_email').val(editContact.email);
+    $('#id_address').val(editContact.address);
+    $('#id_birthday').val(editContact.birthday);
+    $('#id_details').val(editContact.details);
+    showForm();
+  }
 
